@@ -1,0 +1,30 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xl="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://meteringvaluesregistrationservice.ttv.ru/soap/metering"
+           targetNamespace="http://meteringvaluesregistrationservice.ttv.ru/soap/metering"
+           elementFormDefault="qualified" >
+
+    <xs:element name="importMeteringValuesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deviceID" type="xs:string"/>
+                <xs:element name="meteringValue" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="importMeteringValuesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="response" type="tns:meteringRegistrationResponseData"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="meteringRegistrationResponseData">
+        <xs:sequence>
+            <xs:element name="registrationResult" type="xs:string"/>
+            <xs:element name="date" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
