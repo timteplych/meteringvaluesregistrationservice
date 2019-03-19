@@ -1,6 +1,8 @@
 package ru.ttv.meteringvaluesregistrationservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,11 +20,15 @@ import javax.validation.Valid;
  * @author Teplykh Timofey  10.03.2019
  */
 
+@RefreshScope
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Value("${city.property}")
+    private String prop;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
@@ -64,6 +70,12 @@ public class UserController {
             model.addAttribute("message","Logged out successfully.");
         }
 
+        return "login";
+    }
+
+    @GetMapping(value = "/config")
+    public String showConfig(){
+        System.out.println(prop);
         return "login";
     }
 
