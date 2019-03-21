@@ -1,6 +1,9 @@
 package ru.ttv.meteringvaluesregistrationservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.messaging.handler.annotation.Headers;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +18,7 @@ import ru.ttv.meteringvaluesregistrationservice.repository.RoleRepository;
 import ru.ttv.meteringvaluesregistrationservice.repository.UserRepository;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -58,5 +62,11 @@ public class UserServiceImpl implements UserService {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(), grantedAuthorities);
+    }
+
+    @ServiceActivator(inputChannel = "channel_no5")
+    public void receiveMessage(@Payload String payload, @Headers Map<String,Object> headers){
+        headers.forEach((s,o) -> System.out.printf("%s:%s\n",s,o));
+        System.out.println(payload);
     }
 }

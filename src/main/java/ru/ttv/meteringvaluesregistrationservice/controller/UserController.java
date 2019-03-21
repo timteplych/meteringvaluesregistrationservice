@@ -1,12 +1,16 @@
 package ru.ttv.meteringvaluesregistrationservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.integration.channel.DirectChannel;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.ttv.meteringvaluesregistrationservice.model.User;
 import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDto;
 import ru.ttv.meteringvaluesregistrationservice.service.UserService;
@@ -23,6 +27,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ApplicationContext context;
 
     @ModelAttribute("user")
     public UserRegistrationDto userRegistrationDto() {
@@ -75,5 +82,13 @@ public class UserController {
     @GetMapping(value = "/admin")
     public String admin(Model model){
         return "admin";
+    }
+
+    @GetMapping(value = "/integration")
+    public String integrationTest(@RequestParam("message") String messagePar){
+        Message<String> message = MessageBuilder.withPayload(messagePar).setHeader("header","value").build();
+        MessageChannel messageChannel = (DirectChannel) context.getBean("channel_no5");
+        messageChannel.send(message);
+        return "index";
     }
 }
