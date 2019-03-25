@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author Teplykh Timofey  10.03.2019
  */
 
-@Aspect
+//@Aspect
 @Component
 public class PerformanceLogAspect {
 
