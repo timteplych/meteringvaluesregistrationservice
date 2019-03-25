@@ -20,7 +20,6 @@ public class MeteringDeviceValues {
     private long id;
 
     @ManyToOne
-    @Column(name = "metering_device")
     private MeteringDevice meteringDevice;
 
     @Column(name = "registration_date")

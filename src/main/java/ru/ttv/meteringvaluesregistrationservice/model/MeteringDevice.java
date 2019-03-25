@@ -27,7 +27,6 @@ public class MeteringDevice {
     private Date installationDate;
 
     @ManyToOne
-    @Column(name = "consumer_account")
     private ConsumerAccount consumerAccount;
 
     public MeteringDevice() {
