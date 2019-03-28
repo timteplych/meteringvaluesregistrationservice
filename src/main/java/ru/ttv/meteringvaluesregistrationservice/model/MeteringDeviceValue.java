@@ -13,7 +13,7 @@ import java.util.Date;
 @Table(name = "metering_device_values")
 @Getter
 @Setter
-public class MeteringDeviceValues {
+public class MeteringDeviceValue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,6 @@ public class MeteringDeviceValues {
     @Column(name = "value")
     private double value;
 
-    public MeteringDeviceValues() {
+    public MeteringDeviceValue() {
     }
 }

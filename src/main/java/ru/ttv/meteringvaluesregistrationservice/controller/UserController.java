@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.ttv.meteringvaluesregistrationservice.model.User;
-import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDto;
+import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDTO;
 import ru.ttv.meteringvaluesregistrationservice.service.UserService;
 
 import javax.validation.Valid;
@@ -25,8 +25,8 @@ public class UserController {
     private UserService userService;
 
     @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    public UserRegistrationDTO userRegistrationDto() {
+        return new UserRegistrationDTO();
     }
 
     @GetMapping
@@ -36,12 +36,12 @@ public class UserController {
 
     @GetMapping(value = "/registration")
     public String registration(Model model){
-        model.addAttribute("userForm", new UserRegistrationDto());
+        model.addAttribute("userForm", new UserRegistrationDTO());
         return "registration";
     }
 
     @PostMapping(value = "/registration")
-    public String registration(@ModelAttribute("user") @Valid UserRegistrationDto userDto, BindingResult result, Model model){
+    public String registration(@ModelAttribute("user") @Valid UserRegistrationDTO userDto, BindingResult result, Model model){
         User existing = userService.findByUsername(userDto.getUsername());
         if (existing != null) {
             result.rejectValue("username", null, "There is already an account registered with that username");

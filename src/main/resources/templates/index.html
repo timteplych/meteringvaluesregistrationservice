@@ -43,6 +43,10 @@
         <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
     </p>
 
+    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+    <div sec:authorize="isAuthenticated()">
+        <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" th:href="@{/account_search}">Поиск по адресу</a></button>
+    </div>
 </div>
 </body>
 </html>
