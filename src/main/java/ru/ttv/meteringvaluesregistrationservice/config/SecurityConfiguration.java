@@ -3,7 +3,6 @@ package ru.ttv.meteringvaluesregistrationservice.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,10 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/api/v1/**",
-//                        "/api/v1/metering_device/**",
                         "/webjars/**").permitAll()
-//                .antMatchers(
-//                        "/registration**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -52,29 +48,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/login?logout")
                 .permitAll();
-
-//        http.authorizeRequests().antMatchers(HttpMethod.GET,"/adv/*/edit").hasAuthority("admin")
-//                .antMatchers(HttpMethod.GET,"/adv/add").hasAnyAuthority("admin","user")
-//                .and().formLogin().loginPage("/login").loginProcessingUrl("/login")
-//                .usernameParameter("login").passwordParameter("password").failureUrl("/loginfailed")
-//                .and().logout().logoutSuccessUrl("/");
-//        http
-//                .authorizeRequests()
-//                .antMatchers("/*").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .loginProcessingUrl("/login")
-//                .loginPage("/login")
-//                //.failureUrl("/security/loginfail")
-//                .defaultSuccessUrl("/")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutUrl("/logout")
-//                .logoutSuccessUrl("/logout");
     }
 
 
