@@ -19,8 +19,8 @@ public class MeteringDevice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "device_identifier")
-    private String device_identifier;
+    @Column(name = "deviceIdentifier")
+    private String deviceIdentifier;
 
     @Column(name = "installation_date")
     @Temporal(TemporalType.DATE)

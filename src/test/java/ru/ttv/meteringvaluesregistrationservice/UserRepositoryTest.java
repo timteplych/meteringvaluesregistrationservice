@@ -1,6 +1,7 @@
 package ru.ttv.meteringvaluesregistrationservice;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
+    @Ignore
     public void findByNameTest(){
         User user = new User();
         user.setUsername("testUsername");

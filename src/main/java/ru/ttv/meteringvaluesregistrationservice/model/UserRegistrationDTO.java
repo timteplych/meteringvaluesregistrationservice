@@ -15,7 +15,7 @@ import javax.validation.constraints.NotEmpty;
 })
 @Getter
 @Setter
-public class UserRegistrationDto {
+public class UserRegistrationDTO {
     @NotEmpty
     private String username;
 

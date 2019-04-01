@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Device metering registration application</title>
-    <!--<link rel="stylesheet" type="text/css" th:href="@{/resources/static/style.css}"></link>-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -24,28 +23,42 @@
             <a class="navbar-brand" href="#" th:href="@{/}">Registration and
                 Login Module</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </div>
     </div>
 </nav>
+
 <br>
 <br>
+
 <div class="container">
-    <h2>User Registration and Login Module using Spring Boot, Spring
-        MVC, Spring Security, JPA/Hibernate and Thymeleaf</h2>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
 
-    <p>
-        Welcome <span sec:authentication="principal.username"></span>
-        <span sec:authentication="name"></span>
-        <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
-    </p>
+            <h1>Поиск абонента</h1>
+            <form th:action="@{/account_search}" th:object="${accountSearch}" method="post">
 
-    <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-    <div sec:authorize="isAuthenticated()">
-        <a class="btn btn-primary btn-lg active" role="button" aria-pressed="true" th:href="@{/account_search}">Поиск по адресу</a></button>
+                <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+                error</p>
+
+                <div class="form-group">
+                    <label for="meteringDevice" class="control-label">Лицевой счет</label>
+                    <input id="meteringDevice" class="form-control" th:field="*{accountNumber}" />
+                </div>
+                <div class="form-group">
+                    <label for="valueDate" class="control-label">Улица</label>
+                    <input id="valueDate" class="form-control" th:field="*{street}" />
+                </div>
+                <div class="form-group">
+                    <label for="value" class="control-label">Дом</label> <input
+                        id="value" class="form-control" th:field="*{house}" />
+                </div>
+                <div class="alert alert-primary" role="alert" th:if="${errors != null}"><div th:text="${errors}"></div> </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Найти</button>
+                </div>
+
+            </form>
+        </div>
     </div>
 </div>
 </body>

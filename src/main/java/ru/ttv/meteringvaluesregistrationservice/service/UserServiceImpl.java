@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.ttv.meteringvaluesregistrationservice.model.Role;
 import ru.ttv.meteringvaluesregistrationservice.model.User;
-import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDto;
+import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDTO;
 import ru.ttv.meteringvaluesregistrationservice.repository.RoleRepository;
 import ru.ttv.meteringvaluesregistrationservice.repository.UserRepository;
 
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void save(UserRegistrationDto registration) {
+    public void save(UserRegistrationDTO registration) {
         User user = new User();
         user.setUsername(registration.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(registration.getPassword()));

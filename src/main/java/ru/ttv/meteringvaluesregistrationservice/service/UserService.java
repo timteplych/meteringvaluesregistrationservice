@@ -2,7 +2,7 @@ package ru.ttv.meteringvaluesregistrationservice.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 import ru.ttv.meteringvaluesregistrationservice.model.User;
-import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDto;
+import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDTO;
 
 /**
  * service class for {@link User}
@@ -10,7 +10,7 @@ import ru.ttv.meteringvaluesregistrationservice.model.UserRegistrationDto;
  */
 public interface UserService extends UserDetailsService {
 
-    void save(UserRegistrationDto registration);
+    void save(UserRegistrationDTO registration);
 
     User findByUsername(String username);
 
